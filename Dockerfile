@@ -3,8 +3,7 @@ FROM centos:7
 MAINTAINER Clement Laforet <sheepkiller@cultdeadsheep.org>
 
 RUN yum update -y && \
-    curl -L -b "oraclelicense=a" -O http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm && \
-	yum localinstall -y jdk-8u181-linux-x64.rpm && \
+    yum install -y java-1.8.0-openjdk-headless && \
     yum clean all
 
 ENV JAVA_HOME=/usr/java/default/ \
@@ -15,7 +14,7 @@ ENV JAVA_HOME=/usr/java/default/ \
 
 ADD start-kafka-manager.sh /kafka-manager-${KM_VERSION}/start-kafka-manager.sh
 
-RUN yum install -y git wget unzip which && \
+RUN yum install -y java-1.8.0-openjdk-devel git wget unzip which && \
     mkdir -p /tmp && \
     cd /tmp && \
     git clone https://github.com/yahoo/kafka-manager && \
