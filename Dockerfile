@@ -14,6 +14,7 @@ ENV JAVA_HOME=/usr/java/default/ \
 
 ADD start-kafka-manager.sh /kafka-manager-${KM_VERSION}/start-kafka-manager.sh
 
+ENV SBT_OPTS="$SBT_OPTS -Dhttp.proxyHost=myhost -Dhttp.proxyPort=myport"
 RUN yum install -y java-1.8.0-openjdk-devel git wget unzip which && \
     mkdir -p /tmp && \
     cd /tmp && \
